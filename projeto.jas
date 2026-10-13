@@ -1,0 +1,56 @@
+// a = 2 (cpf)
+// b = 5 (matricula)
+// c = 2*a - b
+// if (c>3) c = c - 4;
+// else c = c + 4;
+
+.main
+
+.var
+a
+b
+c
+.end-var
+
+    //inicializacao: a = 2
+    BIPUSH 2
+    ISTORE a
+
+    // inicializacao: b = 5
+    BIPUSH 5
+    ISTORE b
+
+    // calculo: c = 2*a - b
+    ILOAD a
+    ILOAD a
+    IADD
+    ILOAD b 
+    ISUB
+    ISTORE c
+
+    // Teste: c > 3 equivale a 3 - c < 0
+    BIPUSH 3
+    ILOAD c
+    ISUB
+    IFLT MAIOR
+
+    // Bloco ELSE: c = c + 4
+    ILOAD c
+    BIPUSH 4
+    IADD
+    ISTORE c
+    GOTO FIM
+
+MAIOR:
+    // Bloco IF: c = c - 4
+    ILOAD c
+    BIPUSH 4
+    ISUB
+    ISTORE c
+
+FIM:
+    //carrega o resultado final na pilha
+    ILOAD c 
+    HALT
+
+.end-main
